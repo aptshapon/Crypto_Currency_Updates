@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to Crypto News Web</h1>
+  <p class="lead">This is a latest Crypto currency news updates website.</p>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">High Hour</th>
+      <th scope="col">Low Hour</th>
+      <th scope="col">MarketCap</th>
+      <th scope="col">Today Total Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for key, value in price.DISPLAY.items %}
+    <tr>
+      <td>{{ key }}</td>
+      <td>{{ value.USD.PRICE }}</td>
+      <td>{{ value.USD.HIGHDAY }}</td>
+      <td>{{ value.USD.LOWDAY }}</td>
+      <td>{{ value.USD.MKTCAP }}</td>
+      <td>{{ value.USD.TOTALVOLUME24HTO }}</td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+
+<div class="container">
+    <div class="row">
+    {% for crypto in api.Data %}
+      <div class="col-sm">
+        <div class="card" style="width: 18rem;">
+        <img src="{{ crypto.imageurl }}" class="card-img-top" alt="{{ crypto.source }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ crypto.title }}</h5>
+            <p class="card-text">{{ crypto.body|truncatewords:30 }}</p>
+            <a href="{{ crypto.url }}" class="btn btn-info">Read More</a>
+        </div>
+        </div>
+        <br/>
+      </div>
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

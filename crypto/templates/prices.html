@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if value.Response %}
+  Sorry, you entered a wrong symbol. Please try again...
+{% endif %}
+
+<h2>{{ notfound }}</h2>
+  {% for key, value in value.DISPLAY.items %}
+    <div class="jumbotron">
+        <h1 class="display-4">{{ key }}</h1>
+        <strong>Name: </strong> {{ key }}<br/>
+        <strong>Price: </strong> {{ value.USD.PRICE }}<br/>
+        <strong>High Hour: </strong> {{ value.USD.HIGHDAY }}<br/>
+        <strong>Low Hour: </strong> {{ value.USD.LOWDAY }}<br/>
+        <strong>MarketCap: </strong> {{ value.USD.MKTCAP }}<br/>
+        <strong>Today Total Volume: </strong> {{ value.USD.TOTALVOLUME24HTO }}<br/>
+    </div>
+  {% endfor %}
+
+<br/><br/>
+
+{% endblock  %}
